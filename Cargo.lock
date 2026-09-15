@@ -752,7 +752,7 @@ dependencies = [
 [[package]]
 name = "casper-rust-wasm-sdk"
 version = "2.2.2"
-source = "git+https://github.com/casper-ecosystem/casper-rust-wasm-sdk?branch=dev#a0a7eba95e9634c2d3dbbb6524d0de59562cbc26"
+source = "git+https://github.com/casper-ecosystem/casper-rust-wasm-sdk?branch=dev#4263e471de07d0f5939a69d63dfa52d3fb2a3e39"
 dependencies = [
  "async-trait",
  "base16",
@@ -892,7 +892,7 @@ dependencies = [
 [[package]]
 name = "ceps-client"
 version = "1.0.0"
-source = "git+https://github.com/Interchouette-ITC/ceps-rust-ts-client?branch=dev#973f9b616cb0ff0ba467dedd556e0302bca9f77f"
+source = "git+https://github.com/Interchouette-ITC/ceps-rust-ts-client?branch=dev#c7796cfacfd6040b42cb92ae07a76797a92867c2"
 dependencies = [
  "base64 0.23.1",
  "blake2 0.10.6",
@@ -6070,7 +6070,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "32497e9a4c7b38532efcdebeef879707aa9f794296a4f0244f6f69e9bc8574bd"
 dependencies = [
  "fastrand",
- "getrandom 0.4.3",
+ "getrandom 0.3.4",
  "once_cell",
  "rustix",
  "windows-sys 0.61.2",
