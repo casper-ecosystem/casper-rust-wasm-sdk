@@ -98,6 +98,8 @@ wasm-opt --version
 
 You need **version 130 or newer** (current tip example: `wasm-opt version 133 (version_133)`). If the command is missing or the version is below 130, install a current Binaryen from the [upstream releases](https://github.com/WebAssembly/binaryen/releases) (`version_133` or later preferred; minimum `version_130` for your OS and arch), unpack it, and put that tree's `bin` directory on `PATH` ahead of any apt Binaryen. Then run `wasm-opt --version` again.
 
+Release `wasm-opt` flags in `Cargo.toml` enable only the features current `rustc` needs (bulk-memory, nontrapping float-to-int, and related). Do **not** pass Binaryen `-all` / `--all-features` with 133+: that produces modules Node rejects when loading `pkg-nodejs` (`WebAssembly.Module(): unknown import kind 0x7f`).
+
 ```shell
 $ make prepare
 $ make pack
