@@ -52,7 +52,7 @@ casper-types = { version = "7.1.1", default-features = false, features = [
 ] }
 clap = { version = "4", features = ["derive", "env"] }
 hex = "0.4"
-rmcp = { version = "3.1.2", default-features = false, features = [
+rmcp = { version = "3.5.0", default-features = false, features = [
   "server",
   "macros",
   "transport-io",

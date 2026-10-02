@@ -1,3 +1,6 @@
+// getter_with_clone expands to .clone() on Copy fields (clippy::clone_on_copy on 1.99+).
+#![cfg_attr(feature = "js", allow(clippy::clone_on_copy))]
+
 pub mod helpers;
 pub mod types;
 
