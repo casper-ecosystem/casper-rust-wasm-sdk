@@ -22,6 +22,7 @@ COPY Cargo.toml Cargo.lock ./
 COPY src ./src
 COPY mcp ./mcp
 COPY examples/desktop/casperatatui ./examples/desktop/casperatatui
+COPY examples/desktop/tauri/src-tauri ./examples/desktop/tauri/src-tauri
 COPY tests/integration/rust ./tests/integration/rust
 
 RUN cargo build -p casper-rust-wasm-sdk-mcp --release \
