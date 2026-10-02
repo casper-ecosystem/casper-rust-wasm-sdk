@@ -42,7 +42,7 @@
     "nth-check": "3.0.1",
     "@tootallnate/once": "3.0.1",
     "js-yaml": "4.3.2",
-    "fast-uri": "3.1.7",
+    "fast-uri": "3.1.8",
     "webpack-dev-server": "5.2.6",
     "svgo": "4.1.0",
     "brace-expansion@1": "1.1.21",

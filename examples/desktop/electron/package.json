@@ -62,7 +62,7 @@
     "ws": "^8.21.3"
   },
   "overrides": {
-    "fast-uri": "3.1.7",
+    "fast-uri": "3.1.8",
     "js-yaml": "4.3.2",
     "undici": "7.29.1",
     "@xmldom/xmldom": "0.9.12",
