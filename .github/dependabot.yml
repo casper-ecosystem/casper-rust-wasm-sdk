@@ -1,7 +1,7 @@
 version: 2
 # Weekly version updates (ignore major). Security alerts are separate (repo graph).
 # npm: every package.json + lock under examples/ and tests/e2e.
-# cargo: root workspace Cargo.lock; python/ has its own lock (excluded workspace).
+# cargo: root workspace Cargo.lock; python/ and signing desk have their own locks.
 updates:
   - package-ecosystem: npm
     directory: /examples/frontend/angular
@@ -77,6 +77,18 @@ updates:
           - "version-update:semver-major"
   - package-ecosystem: cargo
     directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    reviewers:
+      - gRoussac
+    open-pull-requests-limit: 5
+    ignore:
+      - dependency-name: "*"
+        update-types:
+          - "version-update:semver-major"
+  - package-ecosystem: cargo
+    directory: /examples/desktop/tauri/src-tauri
     schedule:
       interval: weekly
       day: monday

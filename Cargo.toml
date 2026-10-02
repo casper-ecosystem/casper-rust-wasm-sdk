@@ -3,9 +3,8 @@ members = [
   ".",
   "mcp",
   "examples/desktop/casperatatui",
-  "examples/desktop/tauri/src-tauri",
 ]
-exclude = ["python"]
+exclude = ["python", "examples/desktop/tauri/src-tauri"]
 # Keep the root package as the only default member so `cargo clippy --lib` /
 # CI do not build mcp / examples. python/ is a standalone maturin crate (path-dep
 # on root + its own [patch.crates-io]); excluded so MCP Docker contexts need not

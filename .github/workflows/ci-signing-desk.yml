@@ -53,4 +53,4 @@ jobs:
         run: make check-lint-tauri
 
       - name: Unit tests
-        run: cargo test -p casper-signing-desk --lib
+        run: cargo test --manifest-path examples/desktop/tauri/src-tauri/Cargo.toml --lib

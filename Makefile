@@ -206,9 +206,11 @@ run-tauri:
 build-tauri:
 	$(MAKE) -C examples/desktop/tauri build
 
+TAURI_MANIFEST := examples/desktop/tauri/src-tauri/Cargo.toml
+
 check-lint-tauri:
-	cargo clippy -p casper-signing-desk --all-targets --no-deps -- -D warnings
-	cargo fmt -p casper-signing-desk -- --check
+	cargo clippy --manifest-path $(TAURI_MANIFEST) --all-targets --no-deps -- -D warnings
+	cargo fmt --manifest-path $(TAURI_MANIFEST) -- --check
 
 .PHONY: run-tauri build-tauri check-lint-tauri
 
