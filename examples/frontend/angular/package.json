@@ -16,12 +16,12 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/common": "~22.1.7",
-    "@angular/compiler": "~22.1.7",
-    "@angular/core": "~22.1.7",
-    "@angular/forms": "~22.1.7",
-    "@angular/platform-browser": "~22.1.7",
-    "@angular/router": "~22.1.7",
+    "@angular/common": "~22.1.6",
+    "@angular/compiler": "~22.1.6",
+    "@angular/core": "~22.1.6",
+    "@angular/forms": "~22.1.6",
+    "@angular/platform-browser": "~22.1.6",
+    "@angular/router": "~22.2.0",
     "@nx/angular": "23.2.1",
     "casper-rust-wasm-sdk": "file:../../../pkg",
     "highlight.js": "^11.11.1",
@@ -31,12 +31,12 @@
     "zone.js": "~0.16.2"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~22.2.0",
+    "@angular-devkit/build-angular": "~22.1.7",
     "@angular-devkit/core": "~22.1.7",
     "@angular-devkit/schematics": "~22.1.7",
     "@angular/cli": "~22.1.7",
-    "@angular/compiler-cli": "~22.1.7",
-    "@angular/language-service": "~22.1.7",
+    "@angular/compiler-cli": "~22.1.6",
+    "@angular/language-service": "~22.1.6",
     "@nx/eslint-plugin": "23.2.1",
     "@nx/jest": "23.2.1",
     "@nx/js": "23.2.1",
@@ -63,7 +63,7 @@
     "prettier": "^3.9.6",
     "ts-node": "~10.9.2",
     "typescript": "~6.0.3",
-    "typescript-eslint": "^8.70.1"
+    "typescript-eslint": "^8.66.0"
   },
   "allowScripts": {
     "@parcel/watcher": true,
@@ -84,6 +84,9 @@
     "@hono/node-server": "2.1.0",
     "@modelcontextprotocol/sdk": "1.30.0",
     "uuid": "11.1.1",
+    "ts-jest": {
+      "@babel/core": "7.29.7"
+    },
     "smol-toml": "^1.8.0",
     "multer": "^2.3.0",
     "svgo": "^4.0.3",
