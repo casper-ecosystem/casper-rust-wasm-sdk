@@ -264,6 +264,23 @@ export class CasperWallet {
     isConnected(): Promise<boolean>;
     constructor();
     /**
+     * Alias for the `sign_message` function, specifically for signing deploy hashes.
+     *
+     * This function calls `sign_message` to sign the provided deploy hash with the
+     * given or active public key.
+     *
+     * # Arguments
+     *
+     * * `deploy_hash` - The deploy hash string to be signed.
+     * * `public_key` - An optional public key string. If `None`, the active public key is used.
+     *
+     * # Returns
+     *
+     * * `Ok(String)` - The signature string.
+     * * `Err(JsError)` - An error if the signing process fails.
+     */
+    signDeployHash(deploy_hash: string, public_key?: string | null): Promise<string>;
+    /**
      * Signs a deploy with the provided or active public key.
      *
      * This function requests a connection to the wallet, retrieves the public key
@@ -292,23 +309,6 @@ export class CasperWallet {
      */
     signDeploy(deploy: Deploy, public_key?: string | null): Promise<Deploy>;
     /**
-     * Alias for the `sign_message` function, specifically for signing deploy hashes.
-     *
-     * This function calls `sign_message` to sign the provided deploy hash with the
-     * given or active public key.
-     *
-     * # Arguments
-     *
-     * * `deploy_hash` - The deploy hash string to be signed.
-     * * `public_key` - An optional public key string. If `None`, the active public key is used.
-     *
-     * # Returns
-     *
-     * * `Ok(String)` - The signature string.
-     * * `Err(JsError)` - An error if the signing process fails.
-     */
-    signDeployHash(deploy_hash: string, public_key?: string | null): Promise<string>;
-    /**
      * Signs a message with the provided or active public key.
      *
      * This function requests a connection to the wallet, retrieves the public key
@@ -334,7 +334,6 @@ export class CasperWallet {
      * * The signing is cancelled by the user.
      */
     signMessage(message: string, public_key?: string | null): Promise<string>;
-    signTransaction(transaction: Transaction, public_key?: string | null): Promise<Transaction>;
     /**
      * Alias for the `sign_message` function, specifically for signing transaction hashes.
      *
@@ -352,6 +351,7 @@ export class CasperWallet {
      * * `Err(JsError)` - An error if the signing process fails.
      */
     signTransactionHash(transaction_hash: string, public_key?: string | null): Promise<string>;
+    signTransaction(transaction: Transaction, public_key?: string | null): Promise<Transaction>;
     switchAccount(): Promise<boolean>;
 }
 
@@ -426,8 +426,8 @@ export class Deploy {
     account(): string;
     addArg(js_value_arg: any, secret_key?: string | null): Deploy;
     addSignature(public_key: string, signature: string): Deploy;
-    approvals(): any;
     approvalsHash(): any;
+    approvals(): any;
     args(): any;
     byName(): string | undefined;
     chainName(): string;
@@ -437,8 +437,8 @@ export class Deploy {
     isExpired(): boolean;
     isModuleBytes(): boolean;
     isStandardPayment(phase: number): boolean;
-    isStoredContract(): boolean;
     isStoredContractPackage(): boolean;
+    isStoredContract(): boolean;
     isTransfer(): boolean;
     isValid(): boolean;
     constructor(deploy: any);
@@ -453,8 +453,8 @@ export class Deploy {
     withHash(hash: ContractHash, secret_key?: string | null): Deploy;
     withModuleBytes(module_bytes: Bytes, secret_key?: string | null): Deploy;
     withPackageHash(package_hash: ContractPackageHash, secret_key?: string | null): Deploy;
-    withPayment(payment: any, secret_key?: string | null): Deploy;
     static withPaymentAndSession(deploy_params: DeployStrParams, session_params: SessionStrParams, payment_params: PaymentStrParams): Deploy;
+    withPayment(payment: any, secret_key?: string | null): Deploy;
     withSecretKey(secret_key?: string | null): Deploy;
     withSession(session: any, secret_key?: string | null): Deploy;
     withStandardPayment(amount: string, secret_key?: string | null): Deploy;
@@ -1248,10 +1248,10 @@ export class NamedKeyValue {
     private constructor();
     free(): void;
     [Symbol.dispose](): void;
-    key(): Key | undefined;
     keyClValue(): CLValue;
-    name(): string | undefined;
+    key(): Key | undefined;
     nameClValue(): CLValue;
+    name(): string | undefined;
     toJson(): any;
 }
 
@@ -1518,10 +1518,6 @@ export class RuntimeArgs {
     free(): void;
     [Symbol.dispose](): void;
     /**
-     * Insert a named [`CLValue`].
-     */
-    insert(name: string, value: CLValue): void;
-    /**
      * Insert from a JS object `{name,type,value}` or a simple arg string.
      */
     insertJsValue(js_value_arg: any): void;
@@ -1529,6 +1525,10 @@ export class RuntimeArgs {
      * Insert a CLI-style simple arg (`name:Type='value'`).
      */
     insertSimple(arg: string): void;
+    /**
+     * Insert a named [`CLValue`].
+     */
+    insert(name: string, value: CLValue): void;
     constructor();
     toJson(): any;
     /**
@@ -2732,9 +2732,9 @@ export class StoredValue {
     asAddressableEntity(): AddressableEntity | undefined;
     asByteCode(): ByteCode | undefined;
     asClValue(): CLValue | undefined;
-    asContract(): Contract | undefined;
     asContractPackage(): ContractPackage | undefined;
     asContractWasm(): ContractWasm | undefined;
+    asContract(): Contract | undefined;
     asDeployInfo(): DeployInfo | undefined;
     asEntryPoint(): EntryPointValue | undefined;
     asEraInfo(): EraInfo | undefined;
@@ -2786,16 +2786,16 @@ export class Transaction {
      */
     isByName(): boolean;
     /**
-     * True when the V1 target is a stored entity (`ByHash` / `ByName`), or the Deploy session is.
-     */
-    isStoredContract(): boolean;
-    /**
      * True when the V1 target is a stored package, or the Deploy session is.
      */
     isStoredContractPackage(): boolean;
-    constructor(transaction: any);
+    /**
+     * True when the V1 target is a stored entity (`ByHash` / `ByName`), or the Deploy session is.
+     */
+    isStoredContract(): boolean;
     static newSession(builder_params: TransactionBuilderParams, transaction_params: TransactionStrParams): Transaction;
     static newTransfer(maybe_source: URef | null | undefined, target_account: string, amount: string, transaction_params: TransactionStrParams, maybe_id?: string | null): Transaction;
+    constructor(transaction: any);
     session_args(): any;
     /**
      * Bytesrepr session args, or an error when args are named.
@@ -2850,12 +2850,12 @@ export class TransactionBuilderParams {
     [Symbol.dispose](): void;
     static newAddBid(public_key: PublicKey, delegation_rate: number, amount: string, minimum_delegation_amount?: bigint | null, maximum_delegation_amount?: bigint | null, reserved_slots?: number | null): TransactionBuilderParams;
     static newDelegate(delegator: PublicKey, validator: PublicKey, amount: string): TransactionBuilderParams;
-    static newInvocableEntity(entity_hash: AddressableEntityHash, entry_point: string): TransactionBuilderParams;
     static newInvocableEntityAlias(entity_alias: string, entry_point: string): TransactionBuilderParams;
-    static newPackage(package_hash: PackageHash, entry_point: string, maybe_entity_version?: string | null): TransactionBuilderParams;
-    static newPackageAlias(package_alias: string, entry_point: string, maybe_entity_version?: string | null): TransactionBuilderParams;
+    static newInvocableEntity(entity_hash: AddressableEntityHash, entry_point: string): TransactionBuilderParams;
     static newPackageAliasWithMajor(package_alias: string, entry_point: string, maybe_entity_version?: string | null, major_protocol_version?: number | null): TransactionBuilderParams;
+    static newPackageAlias(package_alias: string, entry_point: string, maybe_entity_version?: string | null): TransactionBuilderParams;
     static newPackageWithMajor(package_hash: PackageHash, entry_point: string, maybe_entity_version?: string | null, major_protocol_version?: number | null): TransactionBuilderParams;
+    static newPackage(package_hash: PackageHash, entry_point: string, maybe_entity_version?: string | null): TransactionBuilderParams;
     static newRedelegate(delegator: PublicKey, validator: PublicKey, new_validator: PublicKey, amount: string): TransactionBuilderParams;
     static newSession(transaction_bytes?: Bytes | null, is_install_upgrade?: boolean | null): TransactionBuilderParams;
     static newTransfer(maybe_source: URef | null | undefined, target: TransferTarget, amount: string, maybe_id?: bigint | null): TransactionBuilderParams;
@@ -3027,8 +3027,8 @@ export class Transfer {
     id(): bigint | undefined;
     source(): URef;
     target(): URef;
-    to(): AccountHash | undefined;
     toJson(): any;
+    to(): AccountHash | undefined;
 }
 
 export class TransferAddr {

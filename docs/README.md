@@ -96,7 +96,7 @@ Release packs run `wasm-opt`. Check that Binaryen on `PATH` is current **before*
 wasm-opt --version
 ```
 
-You need **version 130 or newer** (for example `wasm-opt version 131 (version_131)`). If the command is missing or the version is below 130, install a current Binaryen from the [upstream releases](https://github.com/WebAssembly/binaryen/releases) (`version_130` or later for your OS and arch), unpack it, and put that tree's `bin` directory on `PATH`. Then run `wasm-opt --version` again.
+You need **version 130 or newer** (current tip example: `wasm-opt version 133 (version_133)`). If the command is missing or the version is below 130, install a current Binaryen from the [upstream releases](https://github.com/WebAssembly/binaryen/releases) (`version_133` or later preferred; minimum `version_130` for your OS and arch), unpack it, and put that tree's `bin` directory on `PATH` ahead of any apt Binaryen. Then run `wasm-opt --version` again.
 
 ```shell
 $ make prepare
