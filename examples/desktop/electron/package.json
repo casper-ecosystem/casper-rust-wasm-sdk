@@ -65,6 +65,7 @@
     "fast-uri": "3.1.8",
     "js-yaml": "4.3.2",
     "undici": "7.29.1",
+    "http-cache-semantics": "4.3.0",
     "@xmldom/xmldom": "0.9.12",
     "brace-expansion@1": "1.1.21",
     "brace-expansion@2": "2.1.7",
