@@ -11,8 +11,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^43.7.5",
-    "electron-builder": "^26.15.3",
+    "electron": "^43.7.7",
+    "electron-builder": "^26.17.0",
     "electron-updater": "^6.8.9"
   },
   "build": {
@@ -59,7 +59,7 @@
     ]
   },
   "dependencies": {
-    "ws": "^8.21.3"
+    "ws": "^8.22.0"
   },
   "overrides": {
     "fast-uri": "3.1.8",

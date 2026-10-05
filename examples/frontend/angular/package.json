@@ -12,7 +12,8 @@
     "serve": "nx serve --host 0.0.0.0",
     "serve:prod": "nx serve --configuration=production --host 0.0.0.0",
     "serve:docker": "nx serve --configuration=docker --host 0.0.0.0",
-    "serve:docker-dev": "nx serve --configuration=docker-dev --host 0.0.0.0"
+    "serve:docker-dev": "nx serve --configuration=docker-dev --host 0.0.0.0",
+    "audit:ci": "node scripts/npm-audit-ci.mjs"
   },
   "private": true,
   "dependencies": {
@@ -52,7 +53,7 @@
     "@typescript-eslint/utils": "^8.70.1",
     "angular-eslint": "~22.5.0",
     "concurrently": "^10.0.4",
-    "eslint": "~10.10.0",
+    "eslint": "~10.11.0",
     "eslint-config-prettier": "10.1.8",
     "jest": "^30.5.2",
     "jest-environment-jsdom": "^30.4.1",

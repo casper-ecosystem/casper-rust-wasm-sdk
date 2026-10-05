@@ -32,4 +32,5 @@ jobs:
 
       - name: npm audit (high+)
         working-directory: examples/frontend/angular
-        run: npm audit --audit-level=high
+        # Allowlists unpatched GHSA-vfj7-8cjw-p6xm (braces); see issue #260.
+        run: node scripts/npm-audit-ci.mjs
