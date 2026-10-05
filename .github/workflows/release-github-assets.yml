@@ -66,6 +66,17 @@ jobs:
       - name: Install wasm-pack
         run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
 
+      # Cargo.toml release wasm-opt flags need Binaryen 133+ (`--enable-bulk-memory-opt`).
+      # wasm-pack's vendored wasm-opt is too old and fails make pack on tip.
+      - name: Install Binaryen wasm-opt
+        run: |
+          BINARYEN_VERSION=version_133
+          curl -sL "https://github.com/WebAssembly/binaryen/releases/download/${BINARYEN_VERSION}/binaryen-${BINARYEN_VERSION}-x86_64-linux.tar.gz" \
+            | sudo tar -xz -C /usr/local --strip-components=1
+          hash -r
+          wasm-opt --version
+          command -v wasm-opt
+
       - name: Build Wasm packages
         run: make pack
 
