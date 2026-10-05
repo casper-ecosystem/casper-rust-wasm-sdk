@@ -12,7 +12,8 @@
     "serve": "nx serve --host 0.0.0.0",
     "serve:prod": "nx serve --configuration=production --host 0.0.0.0",
     "serve:docker": "nx serve --configuration=docker --host 0.0.0.0",
-    "serve:docker-dev": "nx serve --configuration=docker-dev --host 0.0.0.0"
+    "serve:docker-dev": "nx serve --configuration=docker-dev --host 0.0.0.0",
+    "audit:ci": "node scripts/npm-audit-ci.mjs"
   },
   "private": true,
   "dependencies": {
