@@ -1,8 +1,5 @@
 use crate::types::{public_key::PublicKey, sdk_error::SdkError};
-use blake2::{
-    digest::{Update, VariableOutput},
-    Blake2bVar,
-};
+use blake2::{Blake2b256, Digest};
 use casper_types::account::ACCOUNT_HASH_LENGTH;
 use casper_types::BLAKE2B_DIGEST_LENGTH;
 use casper_types::{
@@ -52,15 +49,7 @@ impl AccountHash {
     }
 
     fn custom_blake2b<T: AsRef<[u8]>>(data: T) -> [u8; BLAKE2B_DIGEST_LENGTH] {
-        let mut result = [0u8; BLAKE2B_DIGEST_LENGTH];
-        let mut hasher = Blake2bVar::new(BLAKE2B_DIGEST_LENGTH)
-            .expect("Failed to create Blake2b hasher with the specified length");
-
-        hasher.update(data.as_ref());
-        hasher
-            .finalize_variable(&mut result)
-            .expect("Failed to finalize Blake2b hash");
-        result
+        Blake2b256::digest(data.as_ref()).into()
     }
 }
 
