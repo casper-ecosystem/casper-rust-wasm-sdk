@@ -11,9 +11,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^43.7.9",
-    "electron-builder": "^26.17.0",
-    "electron-updater": "^6.8.9"
+    "electron": "^45.0.0",
+    "electron-builder": "^26.18.0",
+    "electron-updater": "^6.8.11"
   },
   "build": {
     "appId": "com.example.myapp",
@@ -61,16 +61,7 @@
   "dependencies": {
     "ws": "^8.22.0"
   },
-  "overrides": {
-    "fast-uri": "3.1.8",
-    "js-yaml": "4.3.2",
-    "undici": "7.29.1",
-    "http-cache-semantics": "4.3.0",
-    "@xmldom/xmldom": "0.9.12",
-    "brace-expansion@1": "1.1.21",
-    "brace-expansion@2": "2.1.7",
-    "brace-expansion@5": "5.0.12"
-  },
+  "overrides": {},
   "allowScripts": {
     "electron": true,
     "electron-winstaller": true
