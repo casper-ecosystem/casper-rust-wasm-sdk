@@ -4,10 +4,7 @@ use crate::types::{key::Key, public_key::PublicKey, sdk_error::SdkError, verbosi
 use base64::engine::general_purpose;
 use base64::Engine;
 use bigdecimal::BigDecimal;
-use blake2::{
-    digest::{Update, VariableOutput},
-    Blake2bVar,
-};
+use blake2::{Blake2b256, Digest};
 use casper_client::cli::JsonArg;
 use casper_types::{
     bytesrepr::ToBytes, cl_value_to_json as cl_value_to_json_from_casper_types, CLValue,
@@ -22,8 +19,6 @@ use serde_json::Value;
 use std::str::FromStr;
 #[cfg(all(feature = "js", target_arch = "wasm32"))]
 use wasm_bindgen::{JsCast, JsValue};
-
-pub const BLAKE2B_DIGEST_LENGTH: usize = 32;
 
 /// Converts a CLValue to a JSON Value.
 ///
@@ -65,14 +60,7 @@ pub fn get_current_timestamp(timestamp: Option<String>) -> String {
 ///
 /// A hexadecimal string representing the Blake2b hash of the input metadata.
 pub fn get_blake2b_hash(meta_data: &str) -> String {
-    let mut result = [0; BLAKE2B_DIGEST_LENGTH];
-    let mut hasher = Blake2bVar::new(BLAKE2B_DIGEST_LENGTH).expect("should create hasher");
-
-    hasher.update(meta_data.as_bytes());
-    hasher
-        .finalize_variable(&mut result)
-        .expect("finalize failed");
-    hex::encode(result).to_lowercase()
+    hex::encode(Blake2b256::digest(meta_data.as_bytes()))
 }
 
 /// Creates a dictionary item key by concatenating the serialized bytes of the key and value.
@@ -111,19 +99,9 @@ pub fn get_blake2b_hash(meta_data: &str) -> String {
 /// ```
 pub fn make_dictionary_item_key<V: ToBytes>(key: &Key, value: &V) -> String {
     let key: CasperTypesKey = CasperTypesKey::from(key.clone());
-    let mut bytes_a = key.to_bytes().unwrap_or_default();
-    let mut bytes_b = value.to_bytes().unwrap_or_default();
-
-    bytes_a.append(&mut bytes_b);
-
-    let mut result = [0; BLAKE2B_DIGEST_LENGTH];
-    let mut hasher = Blake2bVar::new(BLAKE2B_DIGEST_LENGTH).expect("should create hasher");
-
-    hasher.update(&bytes_a);
-    hasher
-        .finalize_variable(&mut result)
-        .expect("finalize failed");
-    hex::encode(result)
+    let mut bytes = key.to_bytes().unwrap_or_default();
+    bytes.extend(value.to_bytes().unwrap_or_default());
+    hex::encode(Blake2b256::digest(&bytes))
 }
 
 /// Convert a formatted account hash to a base64-encoded Key as string (cep-18 key encoding).

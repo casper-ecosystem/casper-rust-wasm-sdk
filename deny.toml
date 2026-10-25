@@ -6,6 +6,10 @@ all-features = false
 
 [advisories]
 yanked = "warn"
+ignore = [
+    { id = "RUSTSEC-2026-0387", reason = "Temporarily accepted: casper-types 7.1.1 pins k256 0.13; upgrading crypto-bigint requires a compatible cryptography dependency migration." },
+    { id = "RUSTSEC-2025-0141", reason = "Transitive dependency of casper-binary-port 1.2.1; no safe drop-in upgrade. Reassess when Casper updates its binary-port dependency." },
+]
 
 [licenses]
 unused-allowed-license = "allow"
@@ -24,6 +28,7 @@ allow = [
     "MPL-2.0",
     "BSL-1.0",
     "Unlicense",
+    "CC0-1.0",
 ]
 confidence-threshold = 0.8
 
