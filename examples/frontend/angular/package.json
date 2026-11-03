@@ -36,7 +36,7 @@
     "@angular-devkit/core": "~22.2.4",
     "@angular-devkit/schematics": "~22.2.4",
     "@angular/cli": "~22.2.4",
-    "@angular/compiler-cli": "~22.2.3",
+    "@angular/compiler-cli": "~22.2.4",
     "@angular/language-service": "~22.2.3",
     "@nx/eslint-plugin": "24.0.1",
     "@nx/jest": "24.0.1",
