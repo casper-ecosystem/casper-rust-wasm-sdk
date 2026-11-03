@@ -16,7 +16,7 @@ pub struct Digest(_Digest);
 
 impl Digest {
     pub fn new(digest_hex_str: &str) -> Result<Digest, Box<SdkError>> {
-        Digest::try_from(digest_hex_str).map_err(Box::new)
+        digest_hex_str.parse::<Digest>().map_err(Box::new)
     }
 
     pub fn value(&self) -> [u8; _Digest::LENGTH] {
@@ -25,7 +25,7 @@ impl Digest {
 
     pub fn from_raw(bytes: Vec<u8>) -> Result<Digest, Box<SdkError>> {
         let hex_string = hex::encode(bytes);
-        Digest::try_from(&hex_string[..]).map_err(Box::new)
+        hex_string.parse::<Digest>().map_err(Box::new)
     }
 }
 
@@ -41,7 +41,7 @@ impl Digest {
     #[cfg_attr(feature = "js", wasm_bindgen(js_name = "fromString"))]
     #[cfg(feature = "js")]
     pub fn from_string(digest_hex_str: &str) -> Result<Digest, JsError> {
-        Self::try_from(digest_hex_str).map_err(Into::into)
+        digest_hex_str.parse::<Digest>().map_err(Into::into)
     }
 
     #[cfg_attr(feature = "js", wasm_bindgen(js_name = "fromRaw"))]
@@ -113,9 +113,10 @@ impl From<[u8; _Digest::LENGTH]> for Digest {
     }
 }
 
-impl TryFrom<&str> for Digest {
-    type Error = SdkError;
-    fn try_from(digest_hex_str: &str) -> Result<Self, Self::Error> {
+impl core::str::FromStr for Digest {
+    type Err = SdkError;
+
+    fn from_str(digest_hex_str: &str) -> Result<Self, Self::Err> {
         let bytes = hex::decode(digest_hex_str).map_err(|err| SdkError::FailedToDecodeHex {
             context: "Digest::try_from",
             error: format!("Decoding hex string {err:?}"),
@@ -152,7 +153,7 @@ impl ToDigest for Digest {
 
 impl ToDigest for &str {
     fn to_digest(&self) -> Digest {
-        Digest::try_from(*self).unwrap_or_default()
+        self.parse::<Digest>().unwrap_or_default()
     }
     fn is_empty(&self) -> bool {
         self.trim().is_empty()
