@@ -42,7 +42,7 @@
     "@nx/jest": "24.0.1",
     "@nx/js": "24.0.1",
     "@nx/workspace": "24.0.1",
-    "@schematics/angular": "~22.2.4",
+    "@schematics/angular": "~22.2.6",
     "@swc-node/register": "~1.12.1",
     "@swc/core": "~1.16.20",
     "@swc/helpers": "~0.5.23",
