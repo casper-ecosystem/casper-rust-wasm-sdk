@@ -51,5 +51,28 @@
     }
   },
   "defaultProject": "casper",
-  "analytics": false
+  "analytics": false,
+  "plugins": [
+    {
+      "plugin": "@nx/jest/plugin",
+      "options": {
+        "targetName": "test"
+      },
+      "include": [
+        "libs/util/config/**/*",
+        "libs/util/services/binary/**/*",
+        "libs/util/services/client/**/*",
+        "libs/util/services/error/**/*",
+        "libs/util/services/form/**/*",
+        "libs/util/services/result/**/*",
+        "libs/util/services/state/**/*",
+        "libs/util/services/storage/**/*",
+        "libs/util/services/wasm/**/*",
+        "libs/util/hihlight-webworker/**/*"
+      ]
+    }
+  ],
+  "affected": {
+    "legacy": true
+  }
 }

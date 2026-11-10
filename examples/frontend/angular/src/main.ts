@@ -124,7 +124,7 @@ const providers: Array<Provider | EnvironmentProviders> = [
     provide: NODE_ADDRESS,
     useValue: (config['network'] as Network)?.node_address,
   },
-  { provide: VERBOSITY, useValue: Verbosity[config['verbosity'] as Verbosity] },
+  { provide: VERBOSITY, useValue: config['verbosity'] as Verbosity },
   importProvidersFrom([WasmModule, ResultModule]),
 ];
 

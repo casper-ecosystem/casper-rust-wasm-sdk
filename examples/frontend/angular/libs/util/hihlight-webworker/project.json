@@ -1,13 +1,12 @@
 {
   "name": "util-hihlight-webworker",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "libs/util/hihlight-webworker/src",
+  "tags": ["util-highlight-webworker"],
   "targets": {
     "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/util/hihlight-webworker"],
       "options": {
-        "jestConfig": "libs/util/hihlight-webworker/jest.config.ts",
         "passWithNoTests": true
       }
     },
@@ -20,6 +19,5 @@
         ]
       }
     }
-  },
-  "tags": ["util-highlight-webworker"]
+  }
 }

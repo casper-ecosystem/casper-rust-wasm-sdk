@@ -33,6 +33,12 @@ export const fetchWasmFactory = async (params: Params): Promise<SDK> => {
     rpc: params.rpc_address,
     node: params.node_address,
   });
+  console.log('Verbosity:', {
+    value: params.verbosity,
+    type: typeof params.verbosity,
+    enum: Verbosity,
+    validValues: Object.values(Verbosity),
+  });
   return new SDK(params.rpc_address, params.node_address, params.verbosity);
 };
 
