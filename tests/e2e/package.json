@@ -19,12 +19,18 @@
   },
   "dependencies": {
     "casper-rust-wasm-sdk": "file:../../pkg-nodejs",
-    "dotenv": "^18.0.9",
+    "dotenv": "^18.0.10",
     "puppeteer": "^25.16.0"
   },
-  "overrides": {},
+  "overrides": {
+    "glob": "^14.0.3",
+    "test-exclude": {
+      "minimatch": "11.0.5"
+    }
+  },
   "allowScripts": {
     "puppeteer": true,
-    "unrs-resolver": true
+    "unrs-resolver": true,
+    "@parcel/watcher@2.6.0": true
   }
 }
