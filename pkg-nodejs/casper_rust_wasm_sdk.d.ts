@@ -49,7 +49,7 @@ export class AccountHash {
     [Symbol.dispose](): void;
     static fromFormattedStr(formatted_str: string): AccountHash;
     static fromPublicKey(public_key: PublicKey): AccountHash;
-    static fromUint8Array(bytes: Uint8Array): AccountHash;
+    static fromUint8Array(bytes: Uint8Array | number[]): AccountHash;
     constructor(account_hash_hex_str: string);
     toFormattedString(): string;
     toHexString(): string;
@@ -86,7 +86,7 @@ export class AddressableEntityHash {
     free(): void;
     [Symbol.dispose](): void;
     static fromFormattedStr(formatted_str: string): AddressableEntityHash;
-    static fromUint8Array(bytes: Uint8Array): AddressableEntityHash;
+    static fromUint8Array(bytes: Uint8Array | number[]): AddressableEntityHash;
     constructor(addressable_entity_hex_str: string);
     toFormattedString(): string;
 }
@@ -376,7 +376,7 @@ export class ContractHash {
     free(): void;
     [Symbol.dispose](): void;
     static fromFormattedStr(formatted_str: string): ContractHash;
-    static fromUint8Array(bytes: Uint8Array): ContractHash;
+    static fromUint8Array(bytes: Uint8Array | number[]): ContractHash;
     constructor(contract_hash_hex_str: string);
     toFormattedString(): string;
 }
@@ -401,7 +401,7 @@ export class ContractPackageHash {
     free(): void;
     [Symbol.dispose](): void;
     static fromFormattedStr(formatted_str: string): ContractPackageHash;
-    static fromUint8Array(bytes: Uint8Array): ContractPackageHash;
+    static fromUint8Array(bytes: Uint8Array | number[]): ContractPackageHash;
     constructor(contract_package_hash_hex_str: string);
     toFormattedString(): string;
 }
@@ -512,7 +512,7 @@ export class DeployStrParams {
 export class DictionaryAddr {
     free(): void;
     [Symbol.dispose](): void;
-    constructor(bytes: Uint8Array);
+    constructor(bytes: Uint8Array | number[]);
 }
 
 export class DictionaryItemIdentifier {
@@ -542,7 +542,7 @@ export class DictionaryItemStrParams {
 export class Digest {
     free(): void;
     [Symbol.dispose](): void;
-    static fromRaw(bytes: Uint8Array): Digest;
+    static fromRaw(bytes: Uint8Array | number[]): Digest;
     static fromString(digest_hex_str: string): Digest;
     constructor(digest_hex_str: string);
     toJson(): any;
@@ -1121,7 +1121,7 @@ export class GlobalStateIdentifier {
 export class HashAddr {
     free(): void;
     [Symbol.dispose](): void;
-    constructor(bytes: Uint8Array);
+    constructor(bytes: Uint8Array | number[]);
     toBytes(): Uint8Array;
     toHexString(): string;
 }
@@ -1176,13 +1176,13 @@ export class Key {
     static fromChecksumRegistry(): Key;
     static fromDeployInfo(key: DeployHash): Key;
     static fromDictionaryAddr(key: DictionaryAddr): Key;
-    static fromDictionaryKey(seed_uref: URef, dictionary_item_key: Uint8Array): Key;
+    static fromDictionaryKey(seed_uref: URef, dictionary_item_key: Uint8Array | number[]): Key;
     static fromEraInfo(key: EraId): Key;
     static fromEraSummary(): Key;
     static fromFormattedString(formatted_str: string): Key;
     static fromHash(key: HashAddr): Key;
     static fromSystemEntityRegistry(): Key;
-    static fromTransfer(key: Uint8Array): Key;
+    static fromTransfer(key: Uint8Array | number[]): Key;
     static fromURef(key: URef): Key;
     static fromUnbond(key: AccountHash): Key;
     static fromWithdraw(key: AccountHash): Key;
@@ -1285,7 +1285,7 @@ export class PackageHash {
     free(): void;
     [Symbol.dispose](): void;
     static fromFormattedStr(formatted_str: string): PackageHash;
-    static fromUint8Array(bytes: Uint8Array): PackageHash;
+    static fromUint8Array(bytes: Uint8Array | number[]): PackageHash;
     constructor(package_hash_hex_str: string);
     toFormattedString(): string;
 }
@@ -1350,7 +1350,7 @@ export enum PricingMode {
 export class PublicKey {
     free(): void;
     [Symbol.dispose](): void;
-    static fromUint8Array(bytes: Uint8Array): PublicKey;
+    static fromUint8Array(bytes: Uint8Array | number[]): PublicKey;
     constructor(public_key_hex_str: string);
     toAccountHash(): AccountHash;
     toJson(): any;
@@ -1753,7 +1753,7 @@ export class SDK {
     get_binary_peers(node_address?: string | null): Promise<any>;
     get_binary_protocol_version(node_address?: string | null): Promise<any>;
     get_binary_reactor_state(node_address?: string | null): Promise<any>;
-    get_binary_read_record(record_id: RecordId, key: Uint8Array, node_address?: string | null): Promise<any>;
+    get_binary_read_record(record_id: RecordId, key: Uint8Array | number[], node_address?: string | null): Promise<any>;
     get_binary_transaction_by_hash(hash: TransactionHash, with_finalized_approvals: boolean, node_address?: string | null): Promise<any>;
     get_binary_try_accept_transaction(transaction: Transaction, node_address?: string | null): Promise<any>;
     get_binary_try_speculative_execution(transaction: Transaction, node_address?: string | null): Promise<any>;
@@ -2868,7 +2868,7 @@ export class TransactionBuilderParams {
     /**
      * Set VmCasperV2. `seed` must be absent or exactly 32 bytes (invalid length is ignored).
      */
-    setRuntimeV2(transferred_value: bigint, seed?: Uint8Array | null): void;
+    setRuntimeV2(transferred_value: bigint, seed?: Uint8Array | number[] | null): void;
     get amount(): string | undefined;
     set amount(value: string);
     get delegation_rate(): number | undefined;
@@ -2928,7 +2928,7 @@ export class TransactionHash {
     free(): void;
     [Symbol.dispose](): void;
     digest(): Digest;
-    static fromRaw(bytes: Uint8Array): TransactionHash;
+    static fromRaw(bytes: Uint8Array | number[]): TransactionHash;
     constructor(transaction_hash_hex_str: string);
     toJson(): any;
     toString(): string;
@@ -3034,7 +3034,7 @@ export class Transfer {
 export class TransferAddr {
     free(): void;
     [Symbol.dispose](): void;
-    constructor(bytes: Uint8Array);
+    constructor(bytes: Uint8Array | number[]);
 }
 
 export class TransferTarget {
@@ -3053,7 +3053,7 @@ export class URef {
     free(): void;
     [Symbol.dispose](): void;
     static fromFormattedStr(formatted_str: string): URef;
-    static fromUint8Array(bytes: Uint8Array, access_rights: number): URef;
+    static fromUint8Array(bytes: Uint8Array | number[], access_rights: number): URef;
     constructor(uref_hex_str: string, access_rights: number);
     toFormattedString(): string;
     toJson(): any;
@@ -3062,7 +3062,7 @@ export class URef {
 export class URefAddr {
     free(): void;
     [Symbol.dispose](): void;
-    constructor(bytes: Uint8Array);
+    constructor(bytes: Uint8Array | number[]);
 }
 
 export enum Verbosity {

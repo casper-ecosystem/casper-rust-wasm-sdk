@@ -9,6 +9,7 @@
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
       "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
       "options": {
         "outputPath": "dist/casper",
         "index": "./src/index.html",
@@ -126,11 +127,15 @@
           ],
           "outputHashing": "all"
         }
-      },
-      "defaultConfiguration": "production"
+      }
     },
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "proxyConfig": "proxy.conf.json",
+        "buildTarget": "AngularCustomWebpackConfig:build"
+      },
       "configurations": {
         "production": {
           "buildTarget": "casper:build:production"
@@ -148,10 +153,8 @@
           "buildTarget": "casper:build:docker-dev"
         }
       },
-      "defaultConfiguration": "development",
-      "options": {
-        "proxyConfig": "proxy.conf.json",
-        "buildTarget": "AngularCustomWebpackConfig:build"
+      "readyWhen": {
+        "signal": true
       }
     },
     "extract-i18n": {
@@ -168,16 +171,14 @@
       }
     },
     "test": {
-      "executor": "@nx/jest:jest",
+      "executor": "nx:run-commands",
       "outputs": ["{workspaceRoot}/coverage/{projectName}"],
       "options": {
-        "jestConfig": "jest.config.app.ts",
-        "passWithNoTests": true
+        "command": "jest --config jest.config.app.ts --passWithNoTests"
       },
       "configurations": {
         "ci": {
-          "ci": true,
-          "codeCoverage": true
+          "command": "jest --config jest.config.app.ts --passWithNoTests --ci --coverage"
         }
       }
     }
