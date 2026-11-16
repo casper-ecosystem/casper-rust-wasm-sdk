@@ -20,7 +20,7 @@
   "dependencies": {
     "casper-rust-wasm-sdk": "file:../../pkg-nodejs",
     "dotenv": "^18.0.10",
-    "puppeteer": "^25.16.0"
+    "puppeteer": "^25.17.0"
   },
   "overrides": {
     "glob": "^14.0.3",
