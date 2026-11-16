@@ -59,7 +59,7 @@
     ]
   },
   "dependencies": {
-    "ws": "^8.22.0"
+    "ws": "^8.23.0"
   },
   "overrides": {},
   "allowScripts": {
