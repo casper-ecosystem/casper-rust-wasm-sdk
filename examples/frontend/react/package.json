@@ -10,7 +10,7 @@
     "@types/node": "^26.6.6",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
-    "bootstrap": "^5.3.8",
+    "bootstrap": "^5.3.9",
     "casper-rust-wasm-sdk": "file:../../../pkg",
     "http-proxy-middleware": "^4.2.1",
     "react": "^19.3.1",
