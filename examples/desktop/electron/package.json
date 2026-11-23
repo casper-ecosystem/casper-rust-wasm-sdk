@@ -11,9 +11,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^45.3.2",
-    "electron-builder": "^26.18.0",
-    "electron-updater": "^6.8.11"
+    "electron": "^45.4.1",
+    "electron-builder": "^26.18.1",
+    "electron-updater": "^6.8.12"
   },
   "build": {
     "appId": "com.example.myapp",
