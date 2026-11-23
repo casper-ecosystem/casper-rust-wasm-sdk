@@ -43,7 +43,9 @@ RUN rm -rf node_modules package-lock.json
 # Until pkg is on npm: install from workspace-local copy
 RUN sed -i 's|\"casper-rust-wasm-sdk\": \"file:\(\.\.\/\)\+pkg\"|\"casper-rust-wasm-sdk\": \"file:pkg\"|' package.json
 
-RUN npm install --ignore-scripts --verbose && npm update
+RUN npm install --ignore-scripts --verbose \
+    && npm update \
+    && npx --no-install patch-package
 
 RUN npm run build -- --configuration=$BUILD_CONFIGURATION --verbose
 
