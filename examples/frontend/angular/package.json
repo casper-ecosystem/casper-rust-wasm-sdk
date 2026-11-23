@@ -21,7 +21,7 @@
     "@angular/compiler": "~22.2.5",
     "@angular/core": "~22.2.5",
     "@angular/forms": "~22.2.5",
-    "@angular/platform-browser": "~22.2.6",
+    "@angular/platform-browser": "~22.3.0",
     "@angular/router": "~22.2.5",
     "casper-rust-wasm-sdk": "file:../../../pkg",
     "highlight.js": "^11.12.0",
